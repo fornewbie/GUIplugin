@@ -1,9 +1,13 @@
 package example;
 
+// import arc.math.geom.Position;
 import arc.*;
+// import arc.math.geom.Position;
 import arc.util.*;
 import mindustry.*;
 import mindustry.content.*;
+// import mindustry.core.NetServer;
+import mindustry.game.Team;
 import mindustry.game.EventType.*;
 import mindustry.gen.*;
 import mindustry.mod.*;
@@ -79,6 +83,19 @@ public class ExamplePlugin extends Plugin{
 
             //send the other player a message, using [lightgray] for gray text color and [] to reset color
             other.sendMessage("[lightgray](whisper) " + player.name + ":[] " + args[1]);
+        });
+        handler.<Player>register("move", "", "Whisper text to another player.", (args, player) -> {
+                player.unit().set(0,0);
+                player.team(Team.blue);
+
+        });
+        handler.<Player>register("debug", "", "Whisper text to another player.", (args, player) -> {
+            try {
+                System.out.println(player.x);
+                System.out.println(player.y);
+            } catch (Exception e) {
+                System.err.println(e);
+            }
         });
     }
 }
